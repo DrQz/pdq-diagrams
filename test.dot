@@ -48,6 +48,9 @@ digraph G {
     src -> LB:w[color="purple"];
     LB:e -> svc6:w[color="purple"];
     svc6:e -> snk:nne[color="purple"];
+    
+    
+    copyright [shape=none, fontcolor="gray", label="NJG on Dec 03, 2017"];
 }
 
 
