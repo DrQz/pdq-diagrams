@@ -1,0 +1,49 @@
+// Example PDQ model using embedded PNGs
+// Created by NJG on Sunday, December 03, 2017
+   
+digraph G {
+    //compound=true;
+    ranksep=2.5;
+    size="11,8,";
+
+    //node [shape=plaintext, fontsize=16, label=""];
+
+    bgcolor=white;
+    edge [arrowsize=1, color=black];
+    //graph[penwidth=0, labelloc="b"];
+
+    /* Nodes */
+    //{ rank=same; src;  snk };
+    { rank=same; src; pdqMNode1; pdqNode2; pdqNode3; junc1; junc2; junc3; junc4; snk };
+    
+    src [shape=cds, label="Source"];
+    snk [shape=cds, label="Sink"];
+    junc1 [shape=diamond, label="1"];
+    junc2 [shape=diamond, label="2"];
+    junc3 [shape=diamond, label="3"];
+    junc4 [shape=diamond, label="4"];
+    pdqMNode1 [shape=none, label="Multinode1", image="multi-node.png"];
+    pdqNode2 [shape=none, label="Node2", image="single-node.png"];
+    pdqNode3 [shape=none, label="Node3", image="single-node.png"];
+
+    /* Relationships */
+    src -> junc1[label="λ"];
+    junc1 -> pdqMNode1[label="λ1"];
+    pdqMNode1 -> junc2[label="λ1"];
+    junc2 -> pdqNode2[label="0.5 λ1"];
+        
+    pdqNode2 -> junc3[label="λ2"];
+    junc3 -> pdqNode3[label="0.8 λ2"];
+    
+    junc2 -> junc3[label="0.5 λ1", color="blue"];
+     
+    pdqNode3 ->  junc4[label="λ3"];
+    junc4 -> junc1[label="0.5 λ3", penwidth=2, color="red"]; 
+    junc3 -> snk[label="0.2 λ2", penwidth=2, color="green"];
+    junc4 -> snk[label="0.8 λ3"];
+    
+    copyright [shape=none, label="", fontcolor="gray", xlabel="NJG on Dec 03, 2017"];
+}
+
+
+
