@@ -12,10 +12,10 @@ digraph G {
     graph[penwidth=0, labelloc="b"];
 
     /* Nodes */
-    //{ rank=same; LB; svc1 };
+    //{ rank=same; src; LB };
     
-    src [shape=point, label="src"];
-    snk [shape=point, label="snk"];
+    src [shape=invtriangle, label="source"];
+    snk [shape=invtriangle, label="sink"];
     LB [shape=none, label="Load balancer", image="multi-node.png"];
     svc1 [shape=none, label="Services1", image="multi-node.png"];
     svc2 [shape=none, label="Services2", image="multi-node.png"];
@@ -27,19 +27,19 @@ digraph G {
     /* Relationships */
     src -> LB:w[color="red"];
     LB:e -> svc1:w[color="red"];
-    svc1:e -> snk[color="red"];
+    svc1:e -> snk:nnw[color="red"];
     
     src ->  LB:w[color="green"];
     LB:e -> svc2:w[color="green"];
-    svc2:e -> snk[color="green"];
+    svc2:e -> snk:nw[color="green"];
     
     src -> LB:w[color="blue"];
     LB:e -> svc3:w[color="blue"];
-    svc3:e -> snk[color="blue"];
+    svc3:e -> snk:n[color="blue"];
     
     src -> LB:w[color="yellow"];
     LB:e -> svc4:w[color="yellow"];
-    svc4:e -> snk[color="yellow"];
+    svc4:e -> snk:ne[color="yellow"];
     
     src -> LB:w[color="orange"];
     LB:e -> svc5:w[color="orange"];
@@ -47,7 +47,7 @@ digraph G {
     
     src -> LB:w[color="purple"];
     LB:e -> svc6:w[color="purple"];
-    svc6:e -> snk[color="purple"];
+    svc6:e -> snk:nne[color="purple"];
 }
 
 
