@@ -22,9 +22,9 @@ digraph G {
     junc2 [shape=diamond, label="2"];
     junc3 [shape=diamond, label="3"];
     junc4 [shape=diamond, label="4"];
-    pdqMNode1 [shape=none, label="Multinode1", image="multi-node.png"];
-    pdqNode2 [shape=none, label="Node2", image="single-node.png"];
-    pdqNode3 [shape=none, label="Node3", image="single-node.png"];
+    pdqMNode1 [shape=none, label="Multinode1", image="node-multi.png"];
+    pdqNode2 [shape=none, label="Node2", image="node-single.png"];
+    pdqNode3 [shape=none, label="Node3", image="node-single.png"];
 
     /* Relationships */
     src -> junc1[label="λ"];
