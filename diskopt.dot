@@ -4,12 +4,12 @@ digraph G {
 	ranksep=1.0;
 	rankdir=LR;
 	node [shape=plaintext, fontsize=16, label=""];
-	src_fastIOs[label=fastIOs];
-	snk_fastIOs[label=fastIOs];
 	src_slowIOs[label=slowIOs];
 	snk_slowIOs[label=slowIOs];
-	FastDisk [shape=none, label=FastDisk, image="node-single.png"];
+	src_fastIOs[label=fastIOs];
+	snk_fastIOs[label=fastIOs];
 	SlowDisk [shape=none, label=SlowDisk, image="node-single.png"];
-	src_fastIOs ->	FastDisk ->	snk_fastIOs;
+	FastDisk [shape=none, label=FastDisk, image="node-single.png"];
 	src_slowIOs ->	SlowDisk ->	snk_slowIOs;
+	src_fastIOs ->	FastDisk ->	snk_fastIOs;
 }

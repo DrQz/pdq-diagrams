@@ -7,17 +7,25 @@
 use strict;
 use Data::Dumper;
 
+
+
 ########################
-# Read Workload section of Report
+# Read key words from Report
 ########################
-my $keywords = quotemeta "Node Sched Resource   Workload";
-my $file = "diskopt";
-my $infile = "$file-rpt.txt";
-open(INFILE, "< $infile") or die "can't open $infile: $!";
+
+# Get base file name
+my $filename = $ARGV[0];
+if (not defined $filename) {
+  die "Usage: pdqx.pl base_filename\n";
+}
+
+my $infile = "$filename-rpt.txt";
+open(INFILE, "< $infile") or die "Can't open $infile: $!";
 
 my @fields;
 my $started = 0;
 my %streamKV; # hash of lists
+my $keywords = quotemeta "Node Sched Resource   Workload";
 
 while (<INFILE>) {
 	my $x = $_;
@@ -46,7 +54,7 @@ while (<INFILE>) {
 	}
 }
 
-close(INFILE) or die "can't close $infile: $!";
+close(INFILE) or die "Can't close $infile: $!";
 
 # Diagnostics
 #print "fields: @fields\n";
@@ -55,8 +63,8 @@ print Dumper(\%streamKV);
 ########################
 # Emit GV format
 ########################
-my $new = "$file.dot";
-open(NEW, "> $new") or die "can't open $new: $!";
+my $new = "$filename.dot";
+open(NEW, "> $new") or die "Can't open $new: $!";
 
 # Start GV block
 print NEW "digraph G {\n";
@@ -106,5 +114,5 @@ for my $key (keys %streamKV) { # stream
 # End GV block
 print NEW "}\n";
 
-close(NEW) or die "can't close $new: $!";
+close(NEW) or die "Can't close $new: $!";
 
