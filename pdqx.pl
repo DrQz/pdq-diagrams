@@ -1,21 +1,23 @@
 #! /usr/bin/perl -w
 #
 # Extract PDQ node and stream tokens from PDQ_Report() file.
-# Created by NJG on Monday, December 04, 2017
+# Version 2: Use work streams as key and nodes as values
+# Created by NJG on Tuesday, December 05, 2017
 
 use strict;
 use Data::Dumper;
 
-# open Report file and scan for line containing the following keywords ...
+########################
+# Read Workload section of Report
+########################
 my $keywords = quotemeta "Node Sched Resource   Workload";
 my $file = "diskopt";
 my $infile = "$file-rpt.txt";
 open(INFILE, "< $infile") or die "can't open $infile: $!";
 
-my @chunks;
+my @fields;
 my $started = 0;
-my %nodeKV; # hash of lists
-
+my %streamKV; # hash of lists
 
 while (<INFILE>) {
 	my $x = $_;
@@ -27,53 +29,81 @@ while (<INFILE>) {
 	
 	if ($started) {		
 		if ($x =~  /---/) {
-		    # skip heads and underlining
+		    # skip heads and underline
 			next; 
 		}
 		
 		if ($x eq "\n") {
-			# fall out of that section of Report
+			# end of WORKLOAD Parameters section
 			last;
 		}
 		
-	    @chunks = split(' ', $x);  # matches any whitespace
-		if ($chunks[5] > 0) {
+	    @fields = split(' ', $x);  # matches any whitespace
+		if ($fields[5] > 0) {
 			# must have non-zero service demand to get hashed
-			push(@{$nodeKV{$chunks[2]}}, $chunks[3]);
+			push(@{$streamKV{$fields[3]}}, $fields[2]);
 		}
 	}
 }
 
 close(INFILE) or die "can't close $infile: $!";
 
-# diagnostics
-#print "Chunks: @chunks\n";
-#print Dumper(\%nodeKV);
+# Diagnostics
+#print "fields: @fields\n";
+print Dumper(\%streamKV);
 
-
-# GV format template
-
+########################
+# Emit GV format
+########################
 my $new = "$file.dot";
 open(NEW, "> $new") or die "can't open $new: $!";
 
+# Start GV block
 print NEW "digraph G {\n";
+print NEW "\tsize=\"11,8\";\n";
 print NEW "\tcompound=true;\n";
-print NEW "\tranksep=1.25;\n";
+print NEW "\tranksep=1.0;\n";
 print NEW "\trankdir=LR;\n";
 print NEW "\tnode [shape=plaintext, fontsize=16, label=\"\"];\n";
 
-print NEW "\tsrc [label=\"Source\"];\n";
-print NEW "\tsnk [label=\"Sink\"];\n";
+# PDQ stream source-sink nodes
+my $len_max = 0;
 
-for my $key ( keys %nodeKV ) {
-    print NEW "\t$key [shape=none, label=\"$key\", image=\"node-single.png\"];\n";
+# get longest list of streams
+for my $key ( keys %streamKV ) {
+	my $len = $#{ $streamKV{$key} } + 1;
+	if ($len > $len_max) {
+		$len_max = $len;
+	}
 }
 
-for my $key ( keys %nodeKV ) {
-    print NEW "\tsrc -> $key;\n";
-    print NEW "\t$key -> snk;\n";
+# Define sources/sinks
+for my $key (keys %streamKV) {
+	#print "\tsrc [label=$key];\n";
+	#print "\tsnk [label=$key];\n";
+	print NEW "\tsrc_" .  "$key" . "[label=$key];\n";
+	print NEW "\tsnk_" .  "$key" . "[label=$key];\n";
 }
 
+# Define queueing nodes
+for my $key (keys %streamKV) { # stream
+	foreach (@{$streamKV{$key}}) { # listed node 
+		print NEW "\t$_ [shape=none, label=$_, image=\"node-single.png\"];\n";
+	}
+}
+
+# Define arcs between node pairs
+for my $key (keys %streamKV) { # stream
+	print NEW "\tsrc_$key ->";
+	foreach (@{$streamKV{$key}}) { # listed node 
+		print NEW "\t$_";
+		print NEW " ->";
+	}
+	print NEW "\tsnk_$key;";
+	print NEW "\n";
+}
+
+# End GV block
 print NEW "}\n";
 
 close(NEW) or die "can't close $new: $!";

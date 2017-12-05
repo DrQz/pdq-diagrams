@@ -35,9 +35,9 @@ while(fastFrac < 1.0) {
     # Unlike the original example, we add a small
     # amount of the other workload on each disk
     SetDemand(FastDk, IOReqsF, fastService)
-    SetDemand(FastDk, IOReqsS, 2.5e-4)
+    SetDemand(FastDk, IOReqsS, 0)
     SetDemand(SlowDk, IOReqsS, slowService)
-    SetDemand(SlowDk, IOReqsF, 2.5e-4)
+    SetDemand(SlowDk, IOReqsF, 0)
     
     Solve(CANON)
 

@@ -1,7 +1,7 @@
 
                         PRETTY DAMN QUICK REPORT         
                ==========================================
-               ***  on   Mon Dec  4 15:39:03 2017     ***
+               ***  on   Tue Dec  5 13:37:38 2017     ***
                ***  for  Disk IO Optimization         ***
                ***  PDQ  Version 7.x.x Build 051116   ***
                ==========================================
@@ -15,16 +15,16 @@ WORKLOAD Parameters:
 Node Sched Resource   Workload   Class     Demand
 ---- ----- --------   --------   -----     ------
   1  FCFS  FastDisk   fastIOs    Open      0.0050
-  1  FCFS  SlowDisk   fastIOs    Open      0.0003
-  1  FCFS  FastDisk   slowIOs    Open      0.0003
+  1  FCFS  SlowDisk   fastIOs    Open      0.0000
+  1  FCFS  FastDisk   slowIOs    Open      0.0000
   1  FCFS  SlowDisk   slowIOs    Open      0.0150
 
 Queueing Circuit Totals
 Streams:   2
 Nodes:     2
 
-fastIOs      165.0000        0.0053
-slowIOs        1.6667        0.0152
+fastIOs      165.0000        0.0050
+slowIOs        1.6667        0.0150
 
 
                ==========================================
@@ -38,24 +38,24 @@ Solution Method: CANON
 Metric                     Value    Unit
 ------                     -----    ----
 Workload: "fastIOs"
-Number in system          4.7697    Trans
+Number in system          4.7143    Trans
 Mean throughput         165.0000    Trans/Sec
-Response time             0.0289    Sec
-Stretch factor            5.5062
+Response time             0.0286    Sec
+Stretch factor            5.7143
 
 Bounds Analysis:
 Max throughput          200.0000    Trans/Sec
-Min response              0.0053    Sec
+Min response              0.0050    Sec
 
 Workload: "slowIOs"
-Number in system          0.0292    Trans
+Number in system          0.0256    Trans
 Mean throughput           1.6667    Trans/Sec
-Response time             0.0175    Sec
-Stretch factor            1.1473
+Response time             0.0154    Sec
+Stretch factor            1.0256
 
 Bounds Analysis:
 Max throughput           66.6667    Trans/Sec
-Min response              0.0152    Sec
+Min response              0.0150    Sec
 
 
                ********   RESOURCE Performance   ********
@@ -66,36 +66,18 @@ Capacity        FastDisk     fastIOs               1   Servers
 Throughput      FastDisk     fastIOs        165.0000   Trans/Sec
 In service      FastDisk     fastIOs          0.8250   Trans
 Utilization     FastDisk     fastIOs         82.5000   Percent
-Queue length    FastDisk     fastIOs          4.7255   Trans
-Waiting line    FastDisk     fastIOs          3.9005   Trans
+Queue length    FastDisk     fastIOs          4.7143   Trans
+Waiting line    FastDisk     fastIOs          3.8893   Trans
 Waiting time    FastDisk     fastIOs          0.0236   Sec
 Residence time  FastDisk     fastIOs          0.0286   Sec
-
-Capacity        SlowDisk     fastIOs               1   Servers
-Throughput      SlowDisk     fastIOs        165.0000   Trans/Sec
-In service      SlowDisk     fastIOs          0.0413   Trans
-Utilization     SlowDisk     fastIOs          4.1250   Percent
-Queue length    SlowDisk     fastIOs          0.0442   Trans
-Waiting line    SlowDisk     fastIOs          0.0029   Trans
-Waiting time    SlowDisk     fastIOs          0.0000   Sec
-Residence time  SlowDisk     fastIOs          0.0003   Sec
-
-Capacity        FastDisk     slowIOs               1   Servers
-Throughput      FastDisk     slowIOs          1.6667   Trans/Sec
-In service      FastDisk     slowIOs          0.0004   Trans
-Utilization     FastDisk     slowIOs          0.0417   Percent
-Queue length    FastDisk     slowIOs          0.0024   Trans
-Waiting line    FastDisk     slowIOs          0.0020   Trans
-Waiting time    FastDisk     slowIOs          0.0012   Sec
-Residence time  FastDisk     slowIOs          0.0014   Sec
 
 Capacity        SlowDisk     slowIOs               1   Servers
 Throughput      SlowDisk     slowIOs          1.6667   Trans/Sec
 In service      SlowDisk     slowIOs          0.0250   Trans
 Utilization     SlowDisk     slowIOs          2.5000   Percent
-Queue length    SlowDisk     slowIOs          0.0268   Trans
-Waiting line    SlowDisk     slowIOs          0.0018   Trans
-Waiting time    SlowDisk     slowIOs          0.0011   Sec
-Residence time  SlowDisk     slowIOs          0.0161   Sec
+Queue length    SlowDisk     slowIOs          0.0256   Trans
+Waiting line    SlowDisk     slowIOs          0.0006   Trans
+Waiting time    SlowDisk     slowIOs          0.0004   Sec
+Residence time  SlowDisk     slowIOs          0.0154   Sec
 
 
