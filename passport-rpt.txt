@@ -1,0 +1,90 @@
+
+                        PRETTY DAMN QUICK REPORT         
+               ==========================================
+               ***  on   Tue Dec  5 14:30:58 2017     ***
+               ***  for  Passport Office              ***
+               ***  PDQ  Version 7.x.x Build 051116   ***
+               ==========================================
+
+               ==========================================
+               ********    PDQ Model INPUTS      ********
+               ==========================================
+
+WORKLOAD Parameters:
+
+Node Sched Resource   Workload   Class     Demand
+---- ----- --------   --------   -----     ------
+  1  FCFS  Window1    Applicant  Open     20.0000
+  1  FCFS  Window2    Applicant  Open    226.5306
+  1  FCFS  Window3    Applicant  Open    232.6531
+  1  FCFS  Window4    Applicant  Open     60.0000
+
+Queueing Circuit Totals
+Streams:   1
+Nodes:     4
+
+Applicant      0.0043      539.1837
+
+
+               ==========================================
+               ********   PDQ Model OUTPUTS      ********
+               ==========================================
+
+Solution Method: CANON
+
+               ********   SYSTEM Performance     ********
+
+Metric                     Value    Unit
+------                     -----    ----
+Workload: "Applicant"
+Number in system        164.4265    Trans
+Mean throughput           0.0043    Trans/Sec
+Response time         38537.4704    Sec
+Stretch factor           71.4737
+
+Bounds Analysis:
+Max throughput            0.0043    Trans/Sec
+Min response            539.1837    Sec
+
+
+               ********   RESOURCE Performance   ********
+
+Metric          Resource     Work              Value   Unit
+------          --------     ----              -----   ----
+Capacity        Window1      Applicant             1   Servers
+Throughput      Window1      Applicant        0.0043   Trans/Sec
+In service      Window1      Applicant        0.0853   Trans
+Utilization     Window1      Applicant        8.5333   Percent
+Queue length    Window1      Applicant        0.0933   Trans
+Waiting line    Window1      Applicant        0.0080   Trans
+Waiting time    Window1      Applicant        1.8659   Sec
+Residence time  Window1      Applicant       21.8659   Sec
+
+Capacity        Window2      Applicant             1   Servers
+Throughput      Window2      Applicant        0.0043   Trans/Sec
+In service      Window2      Applicant        0.9665   Trans
+Utilization     Window2      Applicant       96.6531   Percent
+Queue length    Window2      Applicant       28.8780   Trans
+Waiting line    Window2      Applicant       27.9115   Trans
+Waiting time    Window2      Applicant     6541.7621   Sec
+Residence time  Window2      Applicant     6768.2927   Sec
+
+Capacity        Window3      Applicant             1   Servers
+Throughput      Window3      Applicant        0.0043   Trans/Sec
+In service      Window3      Applicant        0.9927   Trans
+Utilization     Window3      Applicant       99.2653   Percent
+Queue length    Window3      Applicant      135.1111   Trans
+Waiting line    Window3      Applicant      134.1185   Trans
+Waiting time    Window3      Applicant    31434.0136   Sec
+Residence time  Window3      Applicant    31666.6667   Sec
+
+Capacity        Window4      Applicant             1   Servers
+Throughput      Window4      Applicant        0.0043   Trans/Sec
+In service      Window4      Applicant        0.2560   Trans
+Utilization     Window4      Applicant       25.6000   Percent
+Queue length    Window4      Applicant        0.3441   Trans
+Waiting line    Window4      Applicant        0.0881   Trans
+Waiting time    Window4      Applicant       20.6452   Sec
+Residence time  Window4      Applicant       80.6452   Sec
+
+

@@ -1,0 +1,14 @@
+digraph G {
+	size="11,8";
+	compound=true;
+	ranksep=1.0;
+	rankdir=LR;
+	node [shape=plaintext, fontsize=16, label=""];
+	src_Applicant[label=Applicant];
+	snk_Applicant[label=Applicant];
+	Window1 [shape=none, label=Window1, image="node-single.png"];
+	Window2 [shape=none, label=Window2, image="node-single.png"];
+	Window3 [shape=none, label=Window3, image="node-single.png"];
+	Window4 [shape=none, label=Window4, image="node-single.png"];
+	src_Applicant ->	Window1 ->	Window2 ->	Window3 ->	Window4 ->	snk_Applicant;
+}
