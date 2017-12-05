@@ -16,13 +16,13 @@ digraph G {
     
     src [shape=invtriangle, label="Req source"];
     snk [shape=invtriangle, label="Req sink"];
-    LB [shape=none, label="Load balancer", image="multi-node.png"];
-    svc1 [shape=none, label="Parallel 1", image="multi-node.png"];
-    svc2 [shape=none, label="Parallel 2", image="multi-node.png"];
-    svc3 [shape=none, label="Parallel 3", image="multi-node.png"];
-    svc4 [shape=none, label="Parallel 4", image="multi-node.png"];
-    svc5 [shape=none, label="Parallel 5", image="multi-node.png"];
-    svc6 [shape=none, label="Parallel 6", image="multi-node.png"];
+    LB [shape=none, label="Load balancer", image="node-multi.png"];
+    svc1 [shape=none, label="Parallel 1", image="node-multi.png"];
+    svc2 [shape=none, label="Parallel 2", image="node-multi.png"];
+    svc3 [shape=none, label="Parallel 3", image="node-multi.png"];
+    svc4 [shape=none, label="Parallel 4", image="node-multi.png"];
+    svc5 [shape=none, label="Parallel 5", image="node-multi.png"];
+    svc6 [shape=none, label="Parallel 6", image="node-multi.png"];
 
     /* Relationships */
     src -> LB:w[color="red"];
