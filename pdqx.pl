@@ -113,8 +113,7 @@ if ($openqnm) {
 # Define queueing nodes
 for my $key (keys %streamKV) { # stream
 	foreach (@{$streamKV{$key}}) { # listed node 
-		my $nname = $_;
-		if ($nodetype{$nname} eq "MSQ") {
+		if ($nodetype{$_} eq "MSQ") {
 			print DOT "\t$_ [shape=none, label=$_, image=\"images/node-multi.png\"];\n";
 		} else {
 			print DOT "\t$_ [shape=none, label=$_, image=\"images/node-single.png\"];\n";
