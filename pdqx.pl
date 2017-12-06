@@ -46,9 +46,9 @@ while (<INFILE>) {
 	    @fields = split(' ', $x);  # matches any whitespace
 	    if ($fields[4] eq "Closed") {
 	    	$openqnm = 0; # initialized true
-	    }
+	    } 
 	    
-		if ($fields[5] > 0) {
+	    if ($fields[5] > 0) {
 			# must have non-zero service demand to get hashed
 			push(@{$streamKV{$fields[3]}}, $fields[2]);
 		}
