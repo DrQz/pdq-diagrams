@@ -1,6 +1,6 @@
 # pdq-diagrams
-Queueing network diagrams for PDQ
 
+Programmatic generation of queueing network diagrams for PDQ
 
 ![PDQ diagram](images/baseline.png)
 
