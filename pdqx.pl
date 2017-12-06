@@ -97,7 +97,7 @@ if ($openqnm) {
 		print DOT "\tsrc_" .  "$key" . "[label=$key];\n";
 		print DOT "\tsnk_" .  "$key" . "[label=$key];\n";
 	}
-} else { #closed
+} else { #closedqnm
 	for my $key (keys %streamKV) {
 		print DOT "\tterm_" . "$key [shape=none, label=$key, image=\"node-delay.png\"];\n";
 	}
@@ -114,7 +114,7 @@ for my $key (keys %streamKV) { # stream
 for my $key (keys %streamKV) { # stream
 	if ($openqnm) {
 		print DOT "\tsrc_$key -> ";
-	} else { #closed
+	} else { #closedqnm
 		print DOT "\tterm_$key -> ";
 	}
 	foreach (@{$streamKV{$key}}) { # listed node 
@@ -123,7 +123,7 @@ for my $key (keys %streamKV) { # stream
 	}
 	 if ($openqnm) {
 	 	print DOT "snk_$key;";
-	 } else { #closed
+	 } else { #closedqnm
 	 	print DOT "term_$key;" ;
 	 }
 	print DOT "\n";
