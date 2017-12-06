@@ -12,7 +12,7 @@ use Data::Dumper;
 ########################
 my $filename = $ARGV[0];
 if (not defined $filename) {
-  die "Usage: pdqx.pl base filename\n";
+	die "Usage: pdqx.pl base filename\n";
 }
 
 my $infile = "$filename-rpt.txt";
@@ -121,11 +121,11 @@ for my $key (keys %streamKV) { # stream
 		print DOT "$_";
 		print DOT " -> ";
 	}
-	 if ($openqnm) {
-	 	print DOT "snk_$key;";
-	 } else { #closedqnm
-	 	print DOT "term_$key;" ;
-	 }
+	if ($openqnm) {
+		print DOT "snk_$key;";
+	} else { #closedqnm
+		print DOT "term_$key;" ;
+	}
 	print DOT "\n";
 }
 
@@ -143,4 +143,5 @@ if (not $openqnm) {
 print DOT "}\n";
 
 close(DOT) or die "Can't close $dot: $!";
+
 
