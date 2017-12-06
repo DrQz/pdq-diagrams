@@ -1,8 +1,11 @@
 #! /usr/bin/perl -w
 #
-# Extract PDQ nodes and streams from a Report file.
-# Version 2: Use streams as keys and nodes as values
+# Extract PDQ nodes and streams from Report file and emit a GV dot file.
 # Created by NJG on Tuesday, December 05, 2017
+#
+# Version 1: Use nodes as keys and streams as values
+# Version 2: Use streams as keys and nodes as values
+# Version 3: Hash PDQ node types to select GV image
 
 use strict;
 use Data::Dumper;
