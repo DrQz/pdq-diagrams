@@ -18,10 +18,11 @@ if (not defined $filename) {
 my $infile = "$filename-rpt.txt";
 open(INFILE, "< $infile") or die "Can't open $infile: $!";
 
-my @fields;
+#my @fields;
 my $openqnm = 1;
 my $started = 0;
-my %streamKV; # hash of lists
+my %streamKV; # hash of arrays of nodes
+my %nodetype; # hash of node types
 
 while (<INFILE>) {
 	my $x = $_;
@@ -43,14 +44,20 @@ while (<INFILE>) {
 			last;
 		}
 		
-	    @fields = split(' ', $x);  # matches any whitespace
-	    if ($fields[4] eq "Closed") {
+	    my @fields = split(' ', $x);  # matches any whitespace
+	    # Use of 'defined' avoids 'Use of uninitialized value' warning
+	    if (defined $fields[4] eq "Closed") {
 	    	$openqnm = 0; # initialized true
-	    } 
+	    }
 	    
-	    if ($fields[5] > 0) {
-	    	# must have non-zero service demand to get hashed
+	    if (defined $fields[5] > 0) {
+	    	# must have non-zero demand for node name to get hashed
 	    	push(@{$streamKV{$fields[3]}}, $fields[2]);
+	    }
+	    
+	    # Need PDQ node type to select queue image
+	    if (defined $fields[2]) { # valid node name
+	    	$nodetype{$fields[2]} = $fields[1];
 	    }
 	}
 }
@@ -58,7 +65,7 @@ while (<INFILE>) {
 close(INFILE) or die "Can't close $infile: $!";
 
 # Diagnostics
-#print "fields: @fields\n";
+print Dumper(\%nodetype);
 print Dumper(\%streamKV);
 
 
@@ -106,7 +113,12 @@ if ($openqnm) {
 # Define queueing nodes
 for my $key (keys %streamKV) { # stream
 	foreach (@{$streamKV{$key}}) { # listed node 
-		print DOT "\t$_ [shape=none, label=$_, image=\"images/node-single.png\"];\n";
+		my $nname = $_;
+		if ($nodetype{$nname} eq "MSQ") {
+			print DOT "\t$_ [shape=none, label=$_, image=\"images/node-multi.png\"];\n";
+		} else {
+			print DOT "\t$_ [shape=none, label=$_, image=\"images/node-single.png\"];\n";
+		}
 	}
 }
 
