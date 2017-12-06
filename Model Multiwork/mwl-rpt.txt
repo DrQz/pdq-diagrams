@@ -1,0 +1,115 @@
+
+                        PRETTY DAMN QUICK REPORT         
+               ==========================================
+               ***  on   Wed Dec  6 00:20:54 2017     ***
+               ***  for  Component UPGRADE            ***
+               ***  PDQ  Version 7.0.0 Build 052116   ***
+               ==========================================
+
+               ==========================================
+               ********    PDQ Model INPUTS      ********
+               ==========================================
+
+WORKLOAD Parameters:
+
+Node Sched Resource   Workload   Class     Demand
+---- ----- --------   --------   -----     ------
+  1  FCFS  cpu        batch      Batch     0.2000
+  1  FCFS  dsk        batch      Batch     0.0900
+  1  FCFS  cpu        online     Closed     0.0200
+  1  FCFS  dsk        online     Closed     0.9000
+
+Queueing Circuit Totals
+Streams:   2
+Nodes:     2
+
+
+Job             MPL        Demand
+---             ---        ------
+batch         10.00        0.2900
+
+Client       Number        Demand   Thinktime
+------       ------        ------   ---------
+online        25.00        0.9200    30.00
+
+
+               ==========================================
+               ********   PDQ Model OUTPUTS      ********
+               ==========================================
+
+Solution Method: EXACT
+
+               ********   SYSTEM Performance     ********
+
+Metric                     Value    Unit
+------                     -----    ----
+Workload: "batch"
+Mean concurrency         10.0000    Users
+Mean throughput           4.6398    Users/Sec
+Response time             2.1553    Sec
+Stretch factor            7.4319
+
+Bounds Analysis:
+Max throughput            5.0000    Users/Sec
+Min response              0.2900    Sec
+Max demand                0.2000    Sec
+Tot demand                0.2900    Sec
+Optimal jobs              1.4500    Jobs
+
+Workload: "online"
+Mean concurrency          6.3002    Users
+Mean throughput           0.6233    Users/Sec
+Response time            10.1074    Sec
+Round trip time          40.1074    Sec
+Stretch factor           10.9863
+
+Bounds Analysis:
+Max throughput            1.1111    Users/Sec
+Min response              0.9200    Sec
+Max Demand                0.9000    Sec
+Tot demand                0.9200    Sec
+Think time               30.0000    Sec
+Optimal clients          34.3556    Clients
+
+
+               ********   RESOURCE Performance   ********
+
+Metric          Resource     Work              Value   Unit
+------          --------     ----              -----   ----
+Capacity        cpu          batch                 1   Servers
+Throughput      cpu          batch            4.6398   Users/Sec
+In service      cpu          batch            0.9280   Users
+Utilization     cpu          batch           92.7964   Percent
+Queue length    cpu          batch            5.1976   Users
+Waiting line    cpu          batch            4.2697   Users
+Waiting time    cpu          batch            0.9202   Sec
+Residence time  cpu          batch            1.1202   Sec
+
+Capacity        dsk          batch                 1   Servers
+Throughput      dsk          batch            4.6398   Users/Sec
+In service      dsk          batch            0.4176   Users
+Utilization     dsk          batch           41.7584   Percent
+Queue length    dsk          batch            4.8024   Users
+Waiting line    dsk          batch            4.3848   Users
+Waiting time    dsk          batch            0.9450   Sec
+Residence time  dsk          batch            1.0350   Sec
+
+Capacity        cpu          online                1   Servers
+Throughput      cpu          online           0.6233   Users/Sec
+In service      cpu          online           0.0125   Users
+Utilization     cpu          online           1.2467   Percent
+Queue length    cpu          online           0.0823   Users
+Waiting line    cpu          online           0.0698   Users
+Waiting time    cpu          online           0.1120   Sec
+Residence time  cpu          online           0.1320   Sec
+
+Capacity        dsk          online                1   Servers
+Throughput      dsk          online           0.6233   Users/Sec
+In service      dsk          online           0.5610   Users
+Utilization     dsk          online          56.0993   Percent
+Queue length    dsk          online           6.2180   Users
+Waiting line    dsk          online           5.6570   Users
+Waiting time    dsk          online           9.0755   Sec
+Residence time  dsk          online           9.9755   Sec
+
+
