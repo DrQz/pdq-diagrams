@@ -1,6 +1,7 @@
 # pdq-diagrams
 Queueing network diagrams for PDQ
 
-![PDQ diagram](example.png)
+
+![PDQ diagram](/Model Baseline/example.png)
 
 
