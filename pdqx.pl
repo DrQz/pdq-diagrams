@@ -85,7 +85,7 @@ print NEW "\tnode [shape=plaintext, fontsize=16, label=\"\"];\n";
 # PDQ stream source-sink nodes
 my $len_max = 0;
 
-# get longest list of streams
+# Get longest list of streams
 for my $key ( keys %streamKV ) {
 	my $len = $#{ $streamKV{$key} } + 1;
 	if ($len > $len_max) {
