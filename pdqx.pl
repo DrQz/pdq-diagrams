@@ -1,6 +1,6 @@
 #! /usr/bin/perl -w
 #
-# Extract PDQ node and stream tokens from PDQ_Report() file.
+# Extract PDQ nodes and streams from a Report file.
 # Version 2: Use streams as keys and nodes as values
 # Created by NJG on Tuesday, December 05, 2017
 
