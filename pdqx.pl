@@ -143,5 +143,3 @@ if (not $openqnm) {
 print DOT "}\n";
 
 close(DOT) or die "Can't close $dot: $!";
-
-
