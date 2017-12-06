@@ -1,7 +1,8 @@
+# From PPDQ book p.276
+# Created by NJG on Tue Dec  5 16:14:18 2017
 
 
-# 16 applications per hour
-arrivals <- 15.36 / 3600 
+arrivals <- 15.36 / 3600  # 16 applicants per hour
 
 #   // Branching probabilities appear in SetDemand times. 
 p12 <- 0.30
