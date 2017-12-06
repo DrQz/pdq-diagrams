@@ -99,14 +99,14 @@ if ($openqnm) {
 	}
 } else { #closedqnm
 	for my $key (keys %streamKV) {
-		print DOT "\tterm_" . "$key [shape=none, label=$key, image=\"node-delay.png\"];\n";
+		print DOT "\tterm_" . "$key [shape=none, label=$key, image=\"images/node-delay.png\"];\n";
 	}
 }
 
 # Define queueing nodes
 for my $key (keys %streamKV) { # stream
 	foreach (@{$streamKV{$key}}) { # listed node 
-		print DOT "\t$_ [shape=none, label=$_, image=\"node-single.png\"];\n";
+		print DOT "\t$_ [shape=none, label=$_, image=\"images/node-single.png\"];\n";
 	}
 }
 
