@@ -1,6 +1,7 @@
 #! /usr/bin/perl -w
 #
 # Extract PDQ nodes and streams from Report file and emit a GV dot file.
+# Using PDQ 7.0.0 and GV 2.36 (2.36.0)
 # Created by NJG on Tuesday, December 05, 2017
 #
 # Version 1: Use nodes as keys and streams as values
@@ -21,7 +22,7 @@ if (not defined $filename) {
 my $infile = "$filename-rpt.txt";
 open(INFILE, "< $infile") or die "Can't open $infile: $!";
 
-#my @fields;
+# Globals
 my $openqnm = 1;
 my $started = 0;
 my %streamKV; # hash of arrays of nodes
@@ -47,19 +48,19 @@ while (<INFILE>) {
 			last;
 		}
 		
+		# parse the current line
 	    my @fields = split(' ', $x);  # matches any whitespace
-	    # Use of 'defined' avoids 'Use of uninitialized value' warning
-	    if (defined $fields[4] eq "Closed") {
+	    if ($fields[4] eq "Closed") {
 	    	$openqnm = 0; # initialized true
 	    }
 	    
-	    if (defined $fields[5] > 0) {
-	    	# must have non-zero demand for node name to get hashed
+	    if ($fields[5] > 0) {
+	    	# node must have non-zero demand for work to get its name
 	    	push(@{$streamKV{$fields[3]}}, $fields[2]);
 	    }
 	    
 	    # Need PDQ node type to select queue image
-	    if (defined $fields[2]) { # valid node name
+	    if ($fields[2]) { # valid node name
 	    	$nodetype{$fields[2]} = $fields[1];
 	    }
 	}
