@@ -38,7 +38,7 @@ while (<INFILE>) {
 			next; 
 		}
 		
-		if ($x eq "\n") {
+		if ($x =~ m/Queueing|Circuit|Totals/) {
 			# end of WORKLOAD Parameters section
 			last;
 		}

@@ -1,0 +1,80 @@
+
+                        PRETTY DAMN QUICK REPORT         
+               ==========================================
+               ***  on   Tue Dec  5 21:49:23 2017     ***
+               ***  for  Jackson Network in PDQ-R     ***
+               ***  PDQ  Version 7.x.x Build 051116   ***
+               ==========================================
+
+               ==========================================
+               ********    PDQ Model INPUTS      ********
+               ==========================================
+
+WORKLOAD Parameters:
+
+Node Sched Resource   Workload   Class     Demand
+---- ----- --------   --------   -----     ------
+  1  FCFS  Router1    Traffic    Open      1.2195
+  1  FCFS  Router2    Traffic    Open      1.2195
+  1  FCFS  Router3    Traffic    Open      1.0976
+
+Queueing Circuit Totals
+Streams:   1
+Nodes:     3
+
+Traffic        0.5000        3.5366
+
+
+               ==========================================
+               ********   PDQ Model OUTPUTS      ********
+               ==========================================
+
+Solution Method: CANON
+
+               ********   SYSTEM Performance     ********
+
+Metric                     Value    Unit
+------                     -----    ----
+Workload: "Traffic"
+Number in system          4.3412    Msg
+Mean throughput           0.5000    Msg/Sec
+Response time             8.6824    Sec
+Stretch factor            2.4550
+
+Bounds Analysis:
+Max throughput            0.8200    Msg/Sec
+Min response              3.5366    Sec
+
+
+               ********   RESOURCE Performance   ********
+
+Metric          Resource     Work              Value   Unit
+------          --------     ----              -----   ----
+Capacity        Router1      Traffic               1   Servers
+Throughput      Router1      Traffic          0.5000   Msg/Sec
+In service      Router1      Traffic          0.6098   Msg
+Utilization     Router1      Traffic         60.9756   Percent
+Queue length    Router1      Traffic          1.5625   Msg
+Waiting line    Router1      Traffic          0.9527   Msg
+Waiting time    Router1      Traffic          1.9055   Sec
+Residence time  Router1      Traffic          3.1250   Sec
+
+Capacity        Router2      Traffic               1   Servers
+Throughput      Router2      Traffic          0.5000   Msg/Sec
+In service      Router2      Traffic          0.6098   Msg
+Utilization     Router2      Traffic         60.9756   Percent
+Queue length    Router2      Traffic          1.5625   Msg
+Waiting line    Router2      Traffic          0.9527   Msg
+Waiting time    Router2      Traffic          1.9055   Sec
+Residence time  Router2      Traffic          3.1250   Sec
+
+Capacity        Router3      Traffic               1   Servers
+Throughput      Router3      Traffic          0.5000   Msg/Sec
+In service      Router3      Traffic          0.5488   Msg
+Utilization     Router3      Traffic         54.8780   Percent
+Queue length    Router3      Traffic          1.2162   Msg
+Waiting line    Router3      Traffic          0.6674   Msg
+Waiting time    Router3      Traffic          1.3349   Sec
+Residence time  Router3      Traffic          2.4324   Sec
+
+
