@@ -81,7 +81,6 @@ close(INFILE) or die "Can't close $infile: $!";
 #print Dumper(\%nodetype);
 #print Dumper(\%streamKV);
 
-exit;
 
 ########################
 # Emit GV format
