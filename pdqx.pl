@@ -63,11 +63,11 @@ while (<INFILE>) {
 	    # node type in $fields[1] used to select correct queue image
 	    	$nodetype{$fields[2]} = $fields[1];
 	    }
-		
+
 		if ($fields[4]) { # valid QNM type
 	    	$openqnm = 0 if ($fields[4] eq "Closed"); # initialized true
 	    }
-	    
+
 	    if ($fields[5]) { # valid service demand
 	    	# node must have non-zero demand for work to get its name
 	    	push(@{$streamKV{$fields[3]}}, $fields[2]) if ($fields[5] > 0);
@@ -78,8 +78,8 @@ while (<INFILE>) {
 close(INFILE) or die "Can't close $infile: $!";
 
 # Diagnostics
-print Dumper(\%nodetype);
-print Dumper(\%streamKV);
+#print Dumper(\%nodetype);
+#print Dumper(\%streamKV);
 
 exit;
 
