@@ -29,39 +29,48 @@ my %streamKV; # hash of arrays of nodes
 my %nodetype; # hash of node types
 
 while (<INFILE>) {
-	my $x = $_;
+	my $line = $_;
 	
 	# Keyword pattern
-	if ($x =~ m/Node|Sched|Resource|Workload|Class|Demand/ and !$started) {
+	if ($line =~ m/Node|Sched|Resource|Workload|Class|Demand/ and !$started) {
+		# start WORKLOAD section
 		$started = 1;
 		next; 
 	}
 	
 	if ($started) {		
-		if ($x =~  /---/) {
+		if ($line =~  /---/) {
 		    # skip heads and underline
 			next; 
 		}
 		
-		if ($x =~ m/Queueing|Circuit|Totals/) {
-			# end of WORKLOAD Parameters section
-			last;
+		if ($line =~ m/Queueing|Circuit|Totals/) {
+			# end of WORKLOAD section
+			$started = 0;
+			last; # break out of loop
 		}
 		
-		# parse the current line
-	    my @fields = split(' ', $x);  # matches any whitespace
-	    if ($fields[4] eq "Closed") {
-	    	$openqnm = 0; # initialized true
-	    }
+		# tokenize current line
+	    my @fields = split(' ', $line);  # matches any whitespace
 	    
-	    if ($fields[5] > 0) {
-	    	# node must have non-zero demand for work to get its name
-	    	push(@{$streamKV{$fields[3]}}, $fields[2]);
-	    }
+	    # Since each line (array) is a mix of numbers and names (as strings)
+	    # need to reference each field token by index. 
+	    # Indexing can generate the warning
+	    # "Use of uninitialized value $fields[i] ..."
+	    # The following if statements suppress that warning.
 	    
-	    # Need PDQ node type to select queue image
-	    if ($fields[2]) { # valid node name
+	    if ($fields[2]) { # valid Resource name
+	    # node type in $fields[1] used to select correct queue image
 	    	$nodetype{$fields[2]} = $fields[1];
+	    }
+		
+		if ($fields[4]) { # valid QNM type
+	    	$openqnm = 0 if ($fields[4] eq "Closed"); # initialized true
+	    }
+	    
+	    if ($fields[5]) { # valid service demand
+	    	# node must have non-zero demand for work to get its name
+	    	push(@{$streamKV{$fields[3]}}, $fields[2]) if ($fields[5] > 0);
 	    }
 	}
 }
@@ -72,6 +81,7 @@ close(INFILE) or die "Can't close $infile: $!";
 print Dumper(\%nodetype);
 print Dumper(\%streamKV);
 
+exit;
 
 ########################
 # Emit GV format
