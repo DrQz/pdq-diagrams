@@ -11,6 +11,13 @@
 use strict;
 use Data::Dumper;
 
+# Globals
+my $openqnm = 1;
+my $started = 0;
+my %streamKV; # hash of arrays of nodes
+my %nodetype; # hash of node types
+
+
 #############################
 # Tokenize Report parameters 
 #############################
@@ -21,12 +28,6 @@ if (not defined $filename) {
 
 my $infile = "$filename-rpt.txt";
 open(INFILE, "< $infile") or die "Can't open $infile: $!";
-
-# Globals
-my $openqnm = 1;
-my $started = 0;
-my %streamKV; # hash of arrays of nodes
-my %nodetype; # hash of node types
 
 while (<INFILE>) {
 	my $line = $_;
@@ -62,7 +63,7 @@ while (<INFILE>) {
 	    # The following if statements suppress that warning.
 	    
 	    if ($fields[2]) { # valid Resource name
-	    # node type in $fields[1] used to select correct queue image
+	    	# node type in $fields[1] used to select correct queue image
 	    	$nodetype{$fields[2]} = $fields[1];
 	    }
 
