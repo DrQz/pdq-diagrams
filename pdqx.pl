@@ -102,7 +102,7 @@ printf DOT "%s\n", "digraph G {";
 printf DOT "\t%s\n", "graph [shape=none,label=\"PDQX of \'$filename\' model on $datestring\",labelloc=b,fontsize=18,fontcolor=gray];";
 printf DOT "\t%s\n", "size=\"22,16\";";
 printf DOT "\t%s\n", "compound=true;";
-printf DOT "\t%s\n", "ranksep=3.0;";
+printf DOT "\t%s\n", "ranksep=4.0;";
 printf DOT "\t%s\n", "node [shape=plaintext,fontsize=16,label=\"\"];";
 
 if ($openqnm and (keys %nodetype >= $nwrap)) {
@@ -143,8 +143,8 @@ for my $nname (keys %nodetype) { # listed node
 		next;
 	}
 }
-printf DOT "}\n";
-
+# When we fall out of loop with < $ncount nodes printed
+printf DOT "}\n" if $ncount != 0;
 
 # Define arcs
 for my $key (keys %streamKV) { # stream
