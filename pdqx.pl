@@ -32,50 +32,50 @@ open(INFILE, "< $infile") or die "Can't open $infile: $!";
 
 while (<INFILE>) {
 	my $line = $_;
-	
+
 	# Keyword pattern
 	if ($line =~ m/Node|Sched|Resource|Workload|Class|Demand/ and !$started) {
 		# start WORKLOAD section
 		$started = 1;
 		next; 
 	}
-	
+
 	if ($started) {		
 		if ($line =~  /---/) {
-		    # skip heads and underline
-			next; 
+			# skip heads and underline
+			next;
 		}
-		
+
 		if ($line =~ m/Queueing|Circuit|Totals/) {
 			# end of WORKLOAD section
 			$started = 0;
 			last; # break out of loop
 		}
-		
+	
 		# tokenize current line
-	    my @fields = split(' ', $line);  # matches any whitespace
-	    
-	    # Since each line (array) is a mix of numbers and names (as strings)
-	    # there is ambiguity between fields, e.g., both 'Node' and 'Demand' 
-	    # fields are numbers but Perl doesn't distinguish integers.
-	    # Therefore, need to reference each @fields entry by its index. 
-	    # However, indexing can generate the Perl warning
-	    # "Use of uninitialized value $fields[i] ..."
-	    # The following if statements suppress that warning.
-	    
-	    if ($fields[2]) { # valid Resource name
-	    	# node type in $fields[1] used to select correct queue image
-	    	$nodetype{$fields[2]} = $fields[1];
-	    }
-	    
-	    if ($fields[4]) { # valid QNM type
-	    	$openqnm = 0 if ($fields[4] eq "Closed"); # initialized true
-	    }
-	    
-	    if ($fields[5]) { # valid service Demand
-	    	# node must have non-zero demand for work to get its name
-	    	push(@{$streamKV{$fields[3]}}, $fields[2]) if ($fields[5] > 0);
-	    }
+		my @fields = split(' ', $line);  # matches any whitespace
+
+		# Since each line (array) is a mix of numbers and names (as strings)
+		# there is ambiguity between fields, e.g., both 'Node' and 'Demand' 
+		# fields are numbers but Perl doesn't distinguish integers.
+		# Therefore, need to reference each @fields entry by its index. 
+		# However, indexing can generate the Perl warning
+		# "Use of uninitialized value $fields[i] ..."
+		# The following if statements suppress that warning.
+
+		if ($fields[2]) { # valid Resource name
+			# node type in $fields[1] used to select correct queue image
+			$nodetype{$fields[2]} = $fields[1];
+		}
+
+		if ($fields[4]) { # valid QNM type
+			$openqnm = 0 if ($fields[4] eq "Closed"); # initialized true
+		}
+
+		if ($fields[5]) { # valid service Demand
+			# node must have non-zero demand for work to get its name
+			push(@{$streamKV{$fields[3]}}, $fields[2]) if ($fields[5] > 0);
+		}
 	}
 }
 
