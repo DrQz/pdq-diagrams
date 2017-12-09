@@ -102,12 +102,19 @@ printf DOT "%s\n", "digraph G {";
 printf DOT "\t%s\n", "graph [shape=none,label=\"PDQX of \'$filename\' model on $datestring\",labelloc=b,fontsize=18,fontcolor=gray];";
 printf DOT "\t%s\n", "size=\"22,16\";";
 printf DOT "\t%s\n", "compound=true;";
-printf DOT "\t%s\n", "ranksep=4.0;";
+
+if (keys %nodetype >= $nwrap) {
+	printf DOT "\t%s\n", "ranksep=4.0;";
+} else {
+	printf DOT "\t%s\n", "ranksep=1.0;";
+}
+
+printf DOT "\t%s\n", "rankdir=LR;";
 printf DOT "\t%s\n", "node [shape=plaintext,fontsize=16,label=\"\"];";
 
-if ($openqnm and (keys %nodetype >= $nwrap)) {
-	printf DOT "\t%s\n", "rankdir=LR;";
-}
+# if ($openqnm and (keys %nodetype >= $nwrap)) {
+# 	printf DOT "\t%s\n", "rankdir=LR;";
+# }
 
 # Define sources/sinks
 if ($openqnm) {
