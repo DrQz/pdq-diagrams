@@ -1,0 +1,68 @@
+
+                        PRETTY DAMN QUICK REPORT         
+               ==========================================
+               ***  on   Sat Dec  9 09:06:45 2017     ***
+               ***  for  Tomcat M/M/1/N/N             ***
+               ***  PDQ  Version 7.0.0 Build 052116   ***
+               ==========================================
+
+               ==========================================
+               ********    PDQ Model INPUTS      ********
+               ==========================================
+
+WORKLOAD Parameters:
+
+Node Sched Resource   Workload   Class     Demand
+---- ----- --------   --------   -----     ------
+  1  FCFS  tcthreads  requests   Closed    0.0013605442
+
+Queueing Circuit Totals
+Streams:   1
+Nodes:     1
+
+
+Client       Number        Demand   Thinktime
+------       ------        ------   ---------
+requests     500.00        0.0014     0.00
+
+
+               ==========================================
+               ********   PDQ Model OUTPUTS      ********
+               ==========================================
+
+Solution Method: APPROX        (Iterations: 1; Accuracy: 0.1000%)
+
+               ********   SYSTEM Performance     ********
+
+Metric                     Value    Unit
+------                     -----    ----
+Workload: "requests"
+Mean concurrency        500.0000    Reqs
+Mean throughput         735.0000    Reqs/Sec
+Response time             0.6803    Sec
+Round trip time           0.6803    Sec
+Stretch factor          500.0000
+
+Bounds Analysis:
+Max throughput          735.0000    Reqs/Sec
+Min response              0.0014    Sec
+Max Demand                0.0014    Sec
+Tot demand                0.0014    Sec
+Think time                0.0000    Sec
+Optimal clients           1.0000    Clients
+
+
+               ********   RESOURCE Performance   ********
+
+Metric          Resource     Work              Value   Unit
+------          --------     ----              -----   ----
+Capacity        tcthreads    requests              1   Servers
+Throughput      tcthreads    requests       735.0000   Reqs/Sec
+In service      tcthreads    requests         1.0000   Reqs
+Utilization     tcthreads    requests       100.0000   Percent
+Queue length    tcthreads    requests       500.0000   Reqs
+Waiting line    tcthreads    requests       499.0000   Reqs
+Waiting time    tcthreads    requests         0.6789   Sec
+Residence time  tcthreads    requests         0.6803   Sec
+
+

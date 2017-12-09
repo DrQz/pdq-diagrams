@@ -1,0 +1,62 @@
+
+                        PRETTY DAMN QUICK REPORT         
+               ==========================================
+               ***  on   Sat Dec  9 09:06:45 2017     ***
+               ***  for  Tomcat M/M/m                 ***
+               ***  PDQ  Version 7.0.0 Build 052116   ***
+               ==========================================
+
+               ==========================================
+               ********    PDQ Model INPUTS      ********
+               ==========================================
+
+WORKLOAD Parameters:
+
+Node Sched Resource   Workload   Class     Demand
+---- ----- --------   --------   -----     ------
+350  MSQ   tcthreads  requests   Open     0.4500000000
+
+Queueing Circuit Totals
+Streams:   1
+Nodes:     1
+
+Arrivals       per Sec       Demand 
+--------       --------     -------
+requests     735.0000        0.4500
+
+
+               ==========================================
+               ********   PDQ Model OUTPUTS      ********
+               ==========================================
+
+Solution Method: CANON
+
+               ********   SYSTEM Performance     ********
+
+Metric                     Value    Unit
+------                     -----    ----
+Workload: "requests"
+Number in system        334.3346    Reqs
+Mean throughput         735.0000    Reqs/Sec
+Response time             0.4549    Sec
+Stretch factor            1.0108
+
+Bounds Analysis:
+Max throughput          777.7778    Reqs/Sec
+Min response              0.4500    Sec
+
+
+               ********   RESOURCE Performance   ********
+
+Metric          Resource     Work              Value   Unit
+------          --------     ----              -----   ----
+Capacity        tcthreads    requests            350   Servers
+Throughput      tcthreads    requests       735.0000   Reqs/Sec
+In service      tcthreads    requests       330.7500   Reqs
+Utilization     tcthreads    requests        94.5000   Percent
+Queue length    tcthreads    requests       334.3346   Reqs
+Waiting line    tcthreads    requests         3.5846   Reqs
+Waiting time    tcthreads    requests         0.0049   Sec
+Residence time  tcthreads    requests         0.4549   Sec
+
+
