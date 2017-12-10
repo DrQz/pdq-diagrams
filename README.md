@@ -10,4 +10,4 @@ Programmatic generation of the queueing network diagram from a PDQ model
 
 ### Parallel queues  
 
-![PDQ raudnjg](images/radunjg.png)
+![PDQ raudnjg](images/haproxy.png)
